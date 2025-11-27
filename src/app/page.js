@@ -5,13 +5,21 @@ import { useState } from 'react';
 
 export default function Home() {
 
-  const [inputFields, setInputFields] = useState([1, 2, 3]);
+  const [inputFields, setInputFields] = useState([
+    { id: 1, keyInputValue: '', valueInputValue: '' },
+    { id: 2, keyInputValue: '', valueInputValue: '' },
+    { id: 3, keyInputValue: '', valueInputValue: '' },
+  ]);
 
   function handleAdd() {
 
-    const newInputField = crypto.randomUUID();
+    const newInput = {
+      id: crypto.randomUUID(),
+      keyInputValue: '',
+      valueInputValue: ''
+    }
 
-    setInputFields([...inputFields, newInputField]);
+    setInputFields([...inputFields, newInput]);
   }
 
   return (
@@ -21,12 +29,12 @@ export default function Home() {
           
           {inputFields.map(field => {
             return(
-              <div key={field}>
+              <div key={field.id}>
                 <input />
                 <input />
                 <button onClick={() => {
                   setInputFields(
-                    inputFields.filter(f => f !== field)
+                    inputFields.filter(f => f.id !== field.id)
                   )
                 }}>Delete</button>
               </div>
