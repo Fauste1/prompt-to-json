@@ -24,7 +24,11 @@ export default function Home() {
               <div key={field}>
                 <input />
                 <input />
-                <button>Delete</button>
+                <button onClick={() => {
+                  setInputFields(
+                    inputFields.filter(f => f !== field)
+                  )
+                }}>Delete</button>
               </div>
             );
           })}
