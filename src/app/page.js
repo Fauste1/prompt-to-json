@@ -41,9 +41,15 @@ export default function Home() {
     setInputFields(newInputFields)
   }
 
+  const myStyle = {
+    display: 'flex',
+    gap: '100px',
+    marginLeft: '50px',
+  }
+
   return (
-    <div style={{ display: 'flex', gap: '50px' }}>
-      <div className="input-section" >
+    <div style={myStyle}>
+      <div className="input-section section" >
         <h1>Your Input</h1>
         <form onSubmit={(e) => e.preventDefault()}>
           
@@ -70,20 +76,21 @@ export default function Home() {
           <button onClick={handleAdd}>Add Fields</button>
         </form>
       </div>
-      <div className="output-section">
+      <div className="output-section section">
           <h1>Your JSON output</h1>
-          &#123; 
-          <div style={{marginLeft: '10px'}}>
-            { inputFields.map(field => {
-              return(
-                <div key={field.id}>
-                {field.keyInputValue && <span>&quot;{field.keyInputValue}&quot;</span>} {field.keyInputValue && field.valueInputValue && <span>:</span>} {field.valueInputValue && <span>&quot;{field.valueInputValue}&quot;</span>}{field.valueInputValue || field.keyInputValue ? <span>,</span> : ''}
-              </div>
-              );
-            }) }
+          <div style={{background: '#fff'}}>
+            &#123; 
+            <div style={{marginLeft: '10px'}}>
+              { inputFields.map(field => {
+                return(
+                  <div key={field.id}>
+                  {field.keyInputValue && <span>&quot;{field.keyInputValue}&quot;</span>}{field.keyInputValue && field.valueInputValue && <span>:</span>} {field.valueInputValue && <span>&quot;{field.valueInputValue}&quot;</span>}{field.valueInputValue || field.keyInputValue ? <span>,</span> : ''}
+                </div>
+                );
+              }) }
+            </div>
+            &#125;
           </div>
-          &#125;
-
       </div>
     </div>
   );
