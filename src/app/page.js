@@ -22,6 +22,28 @@ export default function Home() {
     setInputFields([...inputFields, newInput]);
   }
 
+  function handleFieldUpdate(fieldId, newKeyValue, newValueValue) {
+
+    const newInputFields = inputFields.map(f => {
+
+      if (f.id === fieldId) {
+        return {
+          id: f.id,
+          keyInputValue: newKeyValue,
+          valueInputValue: newValueValue
+        };
+      } else {
+        return f;
+      }
+
+    })
+
+    setInputFields(newInputFields)
+
+
+
+  }
+
   return (
     <>
       <div className="input-section">
@@ -30,8 +52,14 @@ export default function Home() {
           {inputFields.map(field => {
             return(
               <div key={field.id}>
-                <input />
-                <input />
+                <input 
+                  value={field.keyInputValue}
+                  onChange={e => handleFieldUpdate(field.id, e.target.value, field.valueInputValue)}
+                />
+                <input 
+                  value={field.valueInputValue}
+                  onChange={e => handleFieldUpdate(field.id, field.keyInputValue, e.target.value)}
+                />
                 <button onClick={() => {
                   setInputFields(
                     inputFields.filter(f => f.id !== field.id)
