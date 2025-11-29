@@ -65,6 +65,8 @@ export default function Home() {
                     value={field.valueInputValue}
                     onChange={e => handleFieldUpdate(field.id, field.keyInputValue, e.target.value)}
                   />
+                  <button>nest object</button>
+                  <button>nest list</button>
                   <button onClick={() => {
                     setInputFields(
                       inputFields.filter(f => f.id !== field.id)
